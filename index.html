@@ -1,0 +1,110 @@
+<script>
+    //computer choice 
+    function computerSelect(){
+        let choices = ['rock', 'paper', 'scissors']
+        return choices[Math.floor(Math.random() * choices.length)]
+    }
+    //define computer choice as result of function
+    let computerSelection = computerSelect();
+
+    //player choice
+    function playerSelect(){
+        //make sure valid
+        let valid = false;
+        while (valid == false) {
+            let playerSelection = prompt('Player selection: Rock, Paper, or Scissors?')
+            if (playerSelection.toLowerCase() == 'rock' || playerSelection.toLowerCase() == 'paper' || playerSelection.toLowerCase() == 'scissors') {
+                valid == true;
+                return playerSelection;
+            } else {
+                console.log("Invalid entry. Please enter /'rock/', /'paper/', or /'scissors/'.")
+            }
+        }
+    }
+
+    //play the first round
+    function playRound(playerSelection, computerSelection){
+        let winner = '';
+        if (computerSelection === playerSelection) {
+            alert('Tie game! You both played ' + playerSelection +".");
+                    let winner = "none";
+                    return winner;
+        } else {
+            switch (playerSelection) {
+                case 'rock':
+                    if (computerSelection === 'paper') {
+                        alert('Out-picked! ' + computerSelection + ' beats ' + playerSelection + '.');
+                        let winner = 'computer';
+                        return winner;
+                    } else {
+                        alert('You did it! ' + playerSelection + ' beats ' + computerSelection + ".");
+                        let winner = "player";
+                        return winner;
+                    }
+                    break;
+                case 'paper':
+                    if (computerSelection === 'scissors') {
+                        alert('Out-picked! ' + computerSelection + ' beats ' + playerSelection + '.');
+                        let winner = 'computer';
+                        return winner;
+                    } else {alert('You did it! ' + playerSelection + ' beats ' + computerSelection + ".");
+                        let winner = "player";
+                        return winner;}
+                    break;
+                case 'scissors':
+                    if (computerSelection === 'rock') {
+                            alert('Out-picked! ' + computerSelection + ' beats ' + playerSelection + '.');
+                            let winner = 'computer';
+                            return winner;
+                        } else {alert('You did it! ' + playerSelection + ' beats ' + computerSelection + ".");
+                            let winner = "player";
+                            return winner;}
+                    break;
+            } 
+        }
+    }
+    // Play games until one gets to 3
+    function game() {
+        let playerPts = 0;
+        let computerPts = 0;
+        while (playerPts < 3 && computerPts < 3) {
+            const playerSelection = playerSelect();
+            const computerSelection = computerSelect();
+            console.log("You played " + playerSelection + " and the computer played " + computerSelection + ".")
+            winner = playRound(playerSelection, computerSelection);
+            switch (winner) {
+                case "computer":
+                    computerPts++;
+                    console.log("The computer won. The score is C" + computerPts + " to P" + playerPts + ".")
+                    break;
+                case "player":
+                    playerPts++;
+                    console.log("The player won. The score is P" + playerPts + " to C" + computerPts + ".")
+                    break;
+                default:
+                    break;
+            }
+            if (playerPts == 3) {
+            console.log("You won!");
+        } else if (computerPts == 3) {
+            console.log("You lost!")
+        }
+    }
+
+        
+            if (playerPts > computerPts) {
+        alert("You won! The final score was P" + playerPts + " to C" + computerPts + ".");
+    } else if (playerPts < computerPts) {
+        alert("You lost! The final score was P" + playerPts + " to C" + computerPts + ".");
+    } else if (playerPts === computerPts) {
+        alert("You tied! The final score was P" + playerPts + " to C" + computerPts + ".");
+    } else {
+        alert("Ummm... something has gone wrong.")
+    }
+}    
+
+let playerPts = 0;
+let computerPts = 0;
+
+game(playerPts, computerPts);
+</script>
